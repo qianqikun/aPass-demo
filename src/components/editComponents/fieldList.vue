@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import utils from "@/utils/utils";
 import draggable from "vuedraggable";
-import editComponentsTypeMap from "@/components/editComponents/editComponentsType";
+import { editComponentsTypeMap } from "@/components/editComponents/editComponentsType";
 import type { EditComponentDefault } from "@/types/editComponentsType";
 import { reactive } from "vue";
 

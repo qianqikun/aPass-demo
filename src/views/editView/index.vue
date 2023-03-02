@@ -30,6 +30,7 @@ export default {
   }
   .operating-wrap {
     flex: 1;
+    overflow-y: scroll;
   }
 }
 </style>

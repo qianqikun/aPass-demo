@@ -1,7 +1,8 @@
 // 断言
 export type Expect<T extends true> = T;
-
+// 断言为true
 export type ExpectTrue<T extends true> = T;
+// 断言为false
 export type ExpectFalse<T extends false> = T;
 export type IsTrue<T extends true> = T;
 export type IsFalse<T extends false> = T;
@@ -13,7 +14,6 @@ export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <
   : false;
 export type NotEqual<X, Y> = true extends Equal<X, Y> ? false : true;
 
-// https://stackoverflow.com/questions/49927523/disallow-call-with-any/49928360#49928360
 export type IsAny<T> = 0 extends 1 & T ? true : false;
 export type NotAny<T> = true extends IsAny<T> ? false : true;
 
@@ -59,3 +59,5 @@ export type Merge<T extends object> = {
 } & {
   [k in NonCommonKeys<T>]?: PickTypeOf<T, k>;
 };
+// 元组转换联合类型
+export type TupleToUnion<T extends any[]> = T[number];

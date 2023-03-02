@@ -4,7 +4,7 @@
       class="column"
       tag="div"
       :list="tasks"
-      :group="{ name: 'column', put: false }"
+      :group="{ name: 'column', put: false, pull: false }"
       item-key="id"
     >
       <template #item="{ element, index: rowIndex }">
@@ -64,17 +64,33 @@ const createColumn = (): columns => {
   return column;
 };
 const handleChange = (event: IEventChange, rowIndex: number) => {
+  console.log(
+    "🚀 ~ file: operatingWrap.vue:67 ~ handleChange ~ event:",
+    event,
+    rowIndex
+  );
   const { added, moved, removed } = event;
   const taskLength = tasks.length;
   if (added) {
-    if (rowIndex === 0) {
-      tasks.unshift(createColumn());
-    } else if (rowIndex === taskLength - 1) {
-      tasks.push(createColumn());
+    const preItem = tasks[rowIndex - 1];
+    const nextItem = tasks[rowIndex + 1];
+    const newArr = [tasks[rowIndex]];
+    if (!preItem || preItem?.components?.length) {
+      newArr.unshift(createColumn());
     }
+    if (!nextItem || nextItem?.components?.length) {
+      newArr.push(createColumn());
+    }
+    tasks.splice(rowIndex, 1, ...newArr);
   } else if (removed) {
-    const removed = tasks[rowIndex];
-    if (!removed?.components?.length) {
+    console.log(
+      "🚀 ~ file: operatingWrap.vue:90 ~ handleChange ~ removed:",
+      removed,
+      rowIndex
+    );
+    const nextItem = tasks[rowIndex + 1];
+    const removedItem = tasks[rowIndex];
+    if (!removedItem?.components?.length) {
       tasks.splice(rowIndex, 1);
     }
   }
@@ -82,9 +98,7 @@ const handleChange = (event: IEventChange, rowIndex: number) => {
 
 // 初始化
 const init = () => {
-  for (let i = 0; i < 3; i++) {
-    tasks.push(createColumn());
-  }
+  tasks.push(createColumn());
 };
 // 创建一行
 
@@ -120,12 +134,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.operating-wrap {
+  overflow-y: scroll;
+}
 .column {
   // border: 1px solid black;
-  // padding: 10px 0;
 }
 :deep.component {
   border: 1px solid red;
+  padding: 4px 0;
   display: flex;
   > div {
     border: 1px solid yellow;

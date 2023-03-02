@@ -1,31 +1,195 @@
-import type { EditComponentDefault } from "@/types/editComponentsType";
-const editComponentsTypeMap: {
-  [propName: string]: EditComponentDefault;
-} = {
-  //单行文本
-  SingleLineTextEdit: {
-    typeName: "单行文本",
-    fieldComponents: "SingleLineTextEdits",
-    id: "",
-    config: {
-      fieldName: "姓名",
-      textLengthMin: 0,
-      textLengthMax: 50,
-      required: false,
-      hiddenWhenCreate: false,
-      placeholderShow: false,
-      placeholder: "",
-      tipsShow: false,
-      tipsText: "",
-      businessType: [],
-    },
+import type {
+  EditComponentLimit,
+  EditComponentDefault,
+} from "@/types/editComponentsType";
+
+// 单行文本
+const SingleLineTextEdit: EditComponentLimit<
+  [
+    "FieldNameCom",
+    "MaxLengthCom",
+    "TextformatCom",
+    "RequiredCom",
+    "HiddenWhenCreateCom",
+    "PlaceholderCom",
+    "TipsCom",
+    "FieldWidthCom",
+    "BusinessTypeCom",
+    "PermissionSettingCom"
+  ]
+> = {
+  typeName: "单行文本",
+  fieldConfigComponents: [
+    "FieldNameCom",
+    "MaxLengthCom",
+    "TextformatCom",
+    "RequiredCom",
+    "HiddenWhenCreateCom",
+    "PlaceholderCom",
+    "TipsCom",
+    "FieldWidthCom",
+    "BusinessTypeCom",
+    "PermissionSettingCom",
+  ],
+  id: "",
+  config: {
+    fieldName: "单行文本",
+    textLengthMin: 0,
+    textLengthMax: 50,
+    required: false,
+    hiddenWhenCreate: false,
+    placeholderShow: false,
+    placeholder: "",
+    textFormat: 0,
+    tipsShow: false,
+    tipsText: "",
+    businessType: [],
+    fieldWidth: 0,
+    permission: [],
   },
-  // //多行文本
-  // MultiLineTextEdit: {},
-  // // 单选
-  // SingleSelectorEdit: {},
-  // // 多选
-  // MultiSelectorEdit: {},
+};
+// 多行文本
+const MultiLineTextEdit: EditComponentLimit<
+  [
+    "FieldNameCom",
+    "MaxLengthCom",
+    "TextformatCom",
+    "RequiredCom",
+    "HiddenWhenCreateCom",
+    "PlaceholderCom",
+    "TipsCom",
+    "FieldWidthCom",
+    "BusinessTypeCom",
+    "PermissionSettingCom"
+  ]
+> = {
+  typeName: "多行文本",
+  fieldConfigComponents: [
+    "FieldNameCom",
+    "MaxLengthCom",
+    "TextformatCom",
+    "RequiredCom",
+    "HiddenWhenCreateCom",
+    "PlaceholderCom",
+    "TipsCom",
+    "FieldWidthCom",
+    "BusinessTypeCom",
+    "PermissionSettingCom",
+  ],
+  id: "",
+  config: {
+    fieldName: "多行文本",
+    textLengthMin: 0,
+    textLengthMax: 50,
+    required: false,
+    hiddenWhenCreate: false,
+    placeholderShow: false,
+    placeholder: "",
+    textFormat: 0,
+    tipsShow: false,
+    tipsText: "",
+    businessType: [],
+    fieldWidth: 0,
+    permission: [],
+  },
+};
+// 单选
+const SingleSelectorEdit: EditComponentLimit<
+  [
+    "FieldNameCom",
+    "SelectorDisplayModeCom",
+    "SelectorOptionsSettingsCom",
+    "RequiredCom",
+    "HiddenWhenCreateCom",
+    "PlaceholderCom",
+    "TipsCom",
+    "FieldWidthCom",
+    "BusinessTypeCom",
+    "PermissionSettingCom"
+  ]
+> = {
+  typeName: "单选",
+  fieldConfigComponents: [
+    "FieldNameCom",
+    "SelectorDisplayModeCom",
+    "SelectorOptionsSettingsCom",
+    "RequiredCom",
+    "HiddenWhenCreateCom",
+    "PlaceholderCom",
+    "TipsCom",
+    "FieldWidthCom",
+    "BusinessTypeCom",
+    "PermissionSettingCom",
+  ],
+  id: "",
+  config: {
+    fieldName: "单选",
+    required: false,
+    selectorDisplayMode: 0,
+    selectorOptions: [],
+    selectorMultiple: false,
+    selectorShowOther: false,
+    hiddenWhenCreate: false,
+    placeholderShow: false,
+    placeholder: "",
+    tipsShow: false,
+    tipsText: "",
+    businessType: [],
+    fieldWidth: 0,
+    permission: [],
+  },
+};
+
+const MultiSelectorEdit: EditComponentLimit<
+  [
+    "FieldNameCom",
+    "SelectorDisplayModeCom",
+    "SelectorOptionsSettingsCom",
+    "RequiredCom",
+    "HiddenWhenCreateCom",
+    "PlaceholderCom",
+    "TipsCom",
+    "FieldWidthCom",
+    "BusinessTypeCom",
+    "PermissionSettingCom"
+  ]
+> = {
+  typeName: "多选",
+  fieldConfigComponents: [
+    "FieldNameCom",
+    "SelectorDisplayModeCom",
+    "SelectorOptionsSettingsCom",
+    "RequiredCom",
+    "HiddenWhenCreateCom",
+    "PlaceholderCom",
+    "TipsCom",
+    "FieldWidthCom",
+    "BusinessTypeCom",
+    "PermissionSettingCom",
+  ],
+  id: "",
+  config: {
+    fieldName: "多选",
+    required: false,
+    selectorDisplayMode: 0,
+    selectorOptions: [],
+    selectorMultiple: true,
+    selectorShowOther: false,
+    hiddenWhenCreate: false,
+    placeholderShow: false,
+    placeholder: "",
+    tipsShow: false,
+    tipsText: "",
+    businessType: [],
+    fieldWidth: 0,
+    permission: [],
+  },
+};
+const editComponentsTypeMap: Record<string, EditComponentDefault> = {
+  SingleLineTextEdit,
+  MultiLineTextEdit,
+  SingleSelectorEdit,
+  MultiSelectorEdit,
   // // 人员
   // PersonnelEdit: {},
   // // 电话
@@ -57,4 +221,12 @@ const editComponentsTypeMap: {
   // // 子表单
   // SubformEdit: {},
 };
-export default editComponentsTypeMap;
+const fieldConfigMap: Record<string, string[]> = {};
+
+for (const key of Object.keys(editComponentsTypeMap)) {
+  const item = editComponentsTypeMap[key];
+  item.fieldComponents = key;
+  fieldConfigMap[key] = item.fieldConfigComponents;
+}
+
+export { editComponentsTypeMap, fieldConfigMap };

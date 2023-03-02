@@ -17,6 +17,7 @@ import { RouterLink, RouterView } from "vue-router";
   .route-wrap {
     display: flex;
     flex: 1;
+    height: 0;
     > div {
       flex: 1;
     }
